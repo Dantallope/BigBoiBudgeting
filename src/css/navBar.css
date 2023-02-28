@@ -1,0 +1,22 @@
+
+.navbar {
+    background-color: #3055be;
+    border-radius: 10px;
+  }
+  
+  .navbar-menu {
+    margin-top: 10px;
+  }
+  
+  .navbar-link {
+    color: white;
+  }
+  
+  .navbar-dropdown {
+    display: none;
+  }
+  
+  .navbar-item:hover .navbar-dropdown {
+    display: block;
+  }
+  
