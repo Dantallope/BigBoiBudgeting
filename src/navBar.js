@@ -10,7 +10,7 @@ function NavBar() {
       </div>
       <ul className="navbar-menu">
         <li className="navbar-item">
-          <a href="#" className="navbar-link">Tab 1</a>
+          <a href="#" className="navbar-link">Overview</a>
           <ul className="navbar-dropdown">
             <li><a href="#">Option 1</a></li>
             <li><a href="#">Option 2</a></li>
@@ -18,7 +18,7 @@ function NavBar() {
           </ul>
         </li>
         <li className="navbar-item">
-          <a href="#" className="navbar-link">Tab 2</a>
+          <a href="#" className="navbar-link">Monthly</a>
           <ul className="navbar-dropdown">
             <li><a href="#">Option 1</a></li>
             <li><a href="#">Option 2</a></li>
@@ -26,7 +26,7 @@ function NavBar() {
           </ul>
         </li>
         <li className="navbar-item">
-          <a href="#" className="navbar-link">Tab 3</a>
+          <a href="#" className="navbar-link">Notifications</a>
           <ul className="navbar-dropdown">
             <li><a href="#">Option 1</a></li>
             <li><a href="#">Option 2</a></li>
