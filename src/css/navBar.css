@@ -1,16 +1,22 @@
-/* Set the background color for the whole site */
-body {
-    background-color: #fbfff1;
-  }
-  
-  /* Set the background color and rounded edges for the navbar */
-  .navbar {
+
+.navbar {
     background-color: #3055be;
     border-radius: 10px;
   }
   
-  /* Add some margin to the top of the navbar */
   .navbar-menu {
     margin-top: 10px;
+  }
+  
+  .navbar-link {
+    color: white;
+  }
+  
+  .navbar-dropdown {
+    display: none;
+  }
+  
+  .navbar-item:hover .navbar-dropdown {
+    display: block;
   }
   

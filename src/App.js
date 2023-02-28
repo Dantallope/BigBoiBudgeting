@@ -1,12 +1,14 @@
 import React from 'react';
-import NavBar from './navbar';
+import AppNavBar from './navBar.js';
 
 function App() {
   return (
     <div>
-      <NavBar />
+      
       <h1>Welcome to BigBoiBudgeting app!</h1>
+      <AppNavBar />
     </div>
   );
 }
 
+export default App;
