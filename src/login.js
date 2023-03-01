@@ -23,7 +23,7 @@ const Login = () => {
           <input type="password" id="password" />
         </div>
 
-        {/* do we need password authentication? */}
+
         {!isLogin && (
           <div className="form-control">
             <label htmlFor="confirm-password">Confirm Password</label>
@@ -33,7 +33,7 @@ const Login = () => {
         <button type="submit">{isLogin ? 'Login' : 'Sign Up'}</button>
       </form>
 
-      {/*  */}
+
       <div className="toggle">
         {isLogin ? (
           <p>
