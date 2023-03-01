@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '/css/login.css';
 
+//login toggle event
 const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
 
@@ -8,6 +9,7 @@ const Login = () => {
     setIsLogin(!isLogin);
   };
 
+// option to login or sign up 
   return (
     <div className="container">
       <h1>{isLogin ? 'Login' : 'Sign Up'}</h1>
@@ -20,6 +22,8 @@ const Login = () => {
           <label htmlFor="password">Password</label>
           <input type="password" id="password" />
         </div>
+
+        {/* do we need password authentication? */}
         {!isLogin && (
           <div className="form-control">
             <label htmlFor="confirm-password">Confirm Password</label>
@@ -28,6 +32,8 @@ const Login = () => {
         )}
         <button type="submit">{isLogin ? 'Login' : 'Sign Up'}</button>
       </form>
+
+      {/*  */}
       <div className="toggle">
         {isLogin ? (
           <p>

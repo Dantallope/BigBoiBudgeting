@@ -50,7 +50,8 @@ function NavBar() {
         </li>
       </ul>
       <div className="navbar-auth">
-        <button className="navbar-signin">Sign In</button>
+
+      {/* login button will also work for signup */}
         <button className="navbar-login">Log In</button>
       </div>
     </nav>
