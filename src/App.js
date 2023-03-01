@@ -12,7 +12,6 @@ function App() {
 
   return (
     <div>
-      <h1>Welcome to BigBoiBudgeting app!</h1>
       <AppNavBar />
       <AppSpendingOverview />
 
