@@ -1,7 +1,9 @@
 import React from 'react';
 import './css/navBar.css';
 
+
 function NavBar() {
+
   return (
     <nav className="navbar">
       <div className="navbar-logo">
