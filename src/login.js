@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '/css/login.css';
+import './css/login.css';
 
 //login toggle event
 const Login = () => {
