@@ -1,4 +1,5 @@
 const express = require('express')
+const path = require('path');
 const mongoose = require('mongoose')
 const { ApolloServer } = require('apollo-server-express');
 
@@ -19,7 +20,7 @@ app.get('/', (re, res) => {
   });
 
 db.once('open', () => {
-    app.listen(PORT, () => {
+    app.listen(port, () => {
         console.log(`Server is running on localhost: ${port}`);
         console.log(`Use GraphQL at http://localhost:${port}${server.graphqlPath}`);
     })
