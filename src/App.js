@@ -15,9 +15,9 @@ function App() {
     <Router>
       <NavBar />
         <Routes>
-          <Route path="/" exact component = { Home } />
-          <Route path="/about" exact component = { About } />
-          <Route path="/service" exact component = { Services } />
+          <Route path="/" exact element={ <Home/> } />
+          <Route path="/about"  element={ <About/> } />
+          <Route path="/services"  element={ <Services/> } />
         </Routes>
       <AppSpendingOverview />
     </Router>
