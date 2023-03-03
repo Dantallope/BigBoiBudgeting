@@ -1,5 +1,5 @@
 import React from 'react';
-import './css/overview.css';
+import '../src/css/budget.css';
 
 function SpendingOverview(props) {
   // Sample data
