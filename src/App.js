@@ -10,11 +10,18 @@ import Services from './pages/services'
 import ContactUs from './pages/contact-us'
 import SignIn from './pages/sign-in'
 import SignUp from './pages/sign-up'
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 
+
+const client = new ApolloClient({
+  uri: '/graphql',
+  cache: new InMemoryCache(),
+});
 
 
 function App() {
   return (
+    <ApolloProvider client={client}>
     <Router>
       <NavBar />
         <Routes>
@@ -26,6 +33,7 @@ function App() {
           <Route path="/sign-up"  element={ <SignUp/> } />
         </Routes>
     </Router>
+    </ApolloProvider>
   );
 }
 
