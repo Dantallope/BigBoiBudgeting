@@ -4,7 +4,7 @@ import NavBar from './NavBar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // import AppSpendingOverview from './overview.js';
-import Home, { homeLoader } from './pages'
+// import Home, { homeLoader } from './pages'
 import About from './pages/about'
 import Services from './pages/services'
 import ContactUs from './pages/contact-us'
@@ -18,7 +18,7 @@ function App() {
     <Router>
       <NavBar />
         <Routes>
-          <Route path="/" exact element={ <Home/> } loader={homeLoader}/>
+          {/* <Route path="/" exact element={ <Home/> } /> */}
           <Route path="/about"  element={ <About/> } />
           <Route path="/services"  element={ <Services/> } />
           <Route path="/contact-us"  element={ <ContactUs/> } />
