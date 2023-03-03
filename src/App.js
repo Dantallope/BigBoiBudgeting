@@ -7,6 +7,7 @@ import {  createBrowserRouter,
 
 // import AppSpendingOverview from './overview.js';
 import Home, { homeLoader } from './pages'
+import Error from './pages/error';
 // import About from './pages/about'
 // import Services from './pages/services'
 // import ContactUs from './pages/contact-us'
@@ -27,7 +28,8 @@ const router = createBrowserRouter([
   {
     path:"/",
     element:<Home/>,
-    loader: homeLoader
+    loader: homeLoader,
+    errorElement: <Error/>
   },
 ]);
 
