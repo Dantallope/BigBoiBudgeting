@@ -12,6 +12,11 @@
     margin-bottom: 2rem;
     color: #3c3744;
   }
+  #logout{
+    padding: 0%;
+    background-color: none;
+    width: 32px;
+  }
   
   form {
     display: flex;
