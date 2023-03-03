@@ -52,16 +52,16 @@ function App() {
     <Router>
       <NavBar />
         <Routes>
-          {/* <Route path="/" exact element={ <Home/> } /> */}
-          <Route path="/about"  element={ <About/> } />
-          <Route path="/services"  element={ <Services/> } />
-          <Route path="/contact-us"  element={ <ContactUs/> } />
-          <Route path="/sign-in"  element={ <SignIn/> } />
-          <Route path="/sign-up"  element={ <SignUp/> } />
-        </Routes>
-    </Router>
-    </ApolloProvider>
-  );
-}
+          {/* <Route path="/" exact element={ <Home/> } /> */
+//           <Route path="/about"  element={ <About/> } />
+//           <Route path="/services"  element={ <Services/> } />
+//           <Route path="/contact-us"  element={ <ContactUs/> } />
+//           <Route path="/sign-in"  element={ <SignIn/> } />
+//           <Route path="/sign-up"  element={ <SignUp/> } />
+//         </Routes>
+//     </Router>
+//     </ApolloProvider>
+//   );
+// }
 
-*/
+// */
