@@ -1,4 +1,3 @@
-import React, { Children } from 'react';
 import './css/App.css'
 // import NavBar from './NavBar';
 import {  createBrowserRouter,
@@ -9,7 +8,7 @@ import {  createBrowserRouter,
 import Home, { homeLoader } from './pages'
 import Error from './pages/error';
 import Main from "./layouts/Main";
-import { element } from 'prop-types';
+//import { element } from 'prop-types';
 import About from './pages/about'
 // import Services from './pages/services'
 // import ContactUs from './pages/contact-us'
@@ -33,7 +32,7 @@ const router = createBrowserRouter([
     errorElement: <Error/>,
     children:[
       {
-        path:"/",
+        index: true,
         element:<Home/>,
         loader:homeLoader,
         errorElement:<Error/>
@@ -43,18 +42,17 @@ const router = createBrowserRouter([
         element:<About/>,
         errorElement:<Error/>
       },
-      
+      {
+        path:"/sign-in",
+        element:<SignIn/>,
+        errorElement:<Error/>
+      },
+      {
+        path:"/sign-up",
+        element:<SignUp/>,
+        errorElement:<Error/>
+      },  
     ]  
-  },
-  {
-    path:"/sign-in",
-    element:<SignIn/>,
-    errorElement:<Error/>
-  },
-  {
-    path:"/sign-up",
-    element:<SignUp/>,
-    errorElement:<Error/>
   },
 ]);
 

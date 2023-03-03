@@ -1,4 +1,5 @@
 import React from 'react'
+import { Outlet } from 'react-router-dom';
 import { 
     Nav, 
     NavLink, 
@@ -35,6 +36,7 @@ const NavBar = () => {
             <NavBtnLink to='/sign-in'>Sign In</NavBtnLink>
         </NavBtn>
         </Nav>
+        <Outlet/>
     </>
   )
 }
