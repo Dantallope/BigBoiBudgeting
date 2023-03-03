@@ -1,5 +1,4 @@
 import './css/App.css'
-// import NavBar from './NavBar';
 import {  createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
@@ -7,11 +6,11 @@ import {  createBrowserRouter,
 // import AppSpendingOverview from './overview.js';
 import Home, { homeLoader } from './pages'
 import Error from './pages/error';
-import Main from "./layouts/Main";
+import Main, { mainLoader } from "./layouts/Main";
 //import { element } from 'prop-types';
 import About from './pages/about'
-// import Services from './pages/services'
-// import ContactUs from './pages/contact-us'
+import Services from './pages/services'
+import ContactUs from './pages/contact-us'
 import SignIn from './pages/sign-in'
 import SignUp from './pages/sign-up'
 
@@ -29,6 +28,7 @@ const router = createBrowserRouter([
   {
     path:"/",
     element:<Main/>,
+    loader:mainLoader,
     errorElement: <Error/>,
     children:[
       {
@@ -52,6 +52,16 @@ const router = createBrowserRouter([
         element:<SignUp/>,
         errorElement:<Error/>
       },  
+      {
+        path:"/contact-us",
+        element:<ContactUs/>,
+        errorElement:<Error/>
+      },
+      {
+        path:"/services",
+        element:<Services/>,
+        errorElement:<Error/>
+      },
     ]  
   },
 ]);
