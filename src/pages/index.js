@@ -5,7 +5,7 @@ import { useLoaderData } from 'react-router-dom'
 import { fetchData } from '../tools'
 // loader
 export function homeLoader(){
-  const userName = fetchData("userName")
+  const userName = fetchData("userName");
   return {userName}
 }
 
@@ -13,8 +13,8 @@ const Home = () => {
   const {userName} = useLoaderData()
 
   return (
-    <div style = {{display:'flex',justifyContent:'center', alignContent:'center',height:'90vh'}}>
-        <h1>Home</h1>
+    <div>
+        <h1>{userName}</h1>
     </div>
   )
 }
