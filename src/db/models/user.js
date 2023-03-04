@@ -1,7 +1,7 @@
-const mongoose = require('mongoose')
+const { Schema, model, Types } = require('mongoose')
 
-const userSchema = new mongoose.Schema({
-    id: String,
+const userSchema = new Schema({
+    id: Schema.Types.ObjectId,
     email: {
         type: String, 
         lowercase: true, 
@@ -14,10 +14,13 @@ const userSchema = new mongoose.Schema({
         required: true
     },
 
-    budget: Number,
+    budget: {
+        type: Number,
+        required: true,
+    }
 
 })
 
-const User = mongoose.model('User', userSchema);
+const User = model('User', userSchema);
 
 module.exports = User
