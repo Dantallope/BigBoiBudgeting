@@ -1,6 +1,4 @@
-import React from 'react';
 import './css/App.css'
-// import NavBar from './NavBar';
 import {  createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
@@ -8,11 +6,13 @@ import {  createBrowserRouter,
 // import AppSpendingOverview from './overview.js';
 import Home, { homeLoader } from './pages'
 import Error from './pages/error';
-// import About from './pages/about'
-// import Services from './pages/services'
-// import ContactUs from './pages/contact-us'
-// import SignIn from './pages/sign-in'
-// import SignUp from './pages/sign-up'
+import Main, { mainLoader } from "./layouts/Main";
+//import { element } from 'prop-types';
+import About from './pages/about'
+import Services from './pages/services'
+import ContactUs from './pages/contact-us'
+import SignIn from './pages/sign-in'
+import SignUp from './pages/sign-up'
 
 //Xavier 
 /*
@@ -27,9 +27,42 @@ const client = new ApolloClient({
 const router = createBrowserRouter([
   {
     path:"/",
-    element:<Home/>,
-    loader: homeLoader,
-    errorElement: <Error/>
+    element:<Main/>,
+    loader:mainLoader,
+    errorElement: <Error/>,
+    children:[
+      {
+        index: true,
+        element:<Home/>,
+        loader:homeLoader,
+        errorElement:<Error/>
+      },
+      {
+        path:"/about",
+        element:<About/>,
+        errorElement:<Error/>
+      },
+      {
+        path:"/sign-in",
+        element:<SignIn/>,
+        errorElement:<Error/>
+      },
+      {
+        path:"/sign-up",
+        element:<SignUp/>,
+        errorElement:<Error/>
+      },  
+      {
+        path:"/contact-us",
+        element:<ContactUs/>,
+        errorElement:<Error/>
+      },
+      {
+        path:"/services",
+        element:<Services/>,
+        errorElement:<Error/>
+      },
+    ]  
   },
 ]);
 
