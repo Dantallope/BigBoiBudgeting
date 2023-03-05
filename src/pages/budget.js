@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import '../src/css/budget.css';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheckCircle, faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
+import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
+import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 
 function BudgetTracker() {
   const [budget, setBudget] = useState(0);
@@ -14,7 +15,7 @@ function BudgetTracker() {
   const handleBudgetChange = (event) => {
     const amount = parseInt(event.target.value);
     if (isNaN(amount) || amount < 0) {
-      setError("You call this a  Do better.");
+      setError("You call this a budget?");
     } else {
       setBudget(amount);
       setError("");
@@ -35,7 +36,7 @@ function BudgetTracker() {
       return;
     }
     if (isNaN(productCost) || productCost <= 0) {
-      setError("Value cannot be empty or negative");
+      setError("Don't lie to yourself");
       return;
     }
     const newExpenses = [...expenses, { title: productTitle, cost: productCost }];
@@ -75,7 +76,7 @@ function BudgetTracker() {
               type="text"
               className="product-title"
               id="product-title"
-              placeholder="Enter Title of Product"
+              placeholder="What did you buy this time?"
               onChange={handleProductTitleChange}
               value={productTitle}
             />
