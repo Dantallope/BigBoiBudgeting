@@ -12,7 +12,6 @@ import About from './pages/about'
 import Services from './pages/services'
 import ContactUs from './pages/contact-us'
 import SignIn from './pages/sign-in'
-import SignUp from './pages/sign-up'
 
 //Xavier 
 /*
@@ -47,11 +46,6 @@ const router = createBrowserRouter([
         element:<SignIn/>,
         errorElement:<Error/>
       },
-      {
-        path:"/sign-up",
-        element:<SignUp/>,
-        errorElement:<Error/>
-      },  
       {
         path:"/contact-us",
         element:<ContactUs/>,
