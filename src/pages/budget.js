@@ -1,71 +1,144 @@
-import React from 'react';
+import React, { useState } from "react";
 import '../src/css/budget.css';
 
+
 function BudgetTracker() {
-  const [budget, setBudget] = useState(0);
-  const [expenses, setExpenses] = useState([]);
+  const [totalAmount, setTotalAmount] = useState("");
+  const [userAmount, setUserAmount] = useState("");
+  const [productTitle, setProductTitle] = useState("");
+  const [expenditureValue, setExpenditureValue] = useState(0);
+  const [balanceValue, setBalanceValue] = useState(0);
+  const [expensesList, setExpensesList] = useState([]);
 
-  const addExpense = (event) => {
-    event.preventDefault();
-    const expenseName = event.target.elements.expenseName.value;
-    const expenseAmount = event.target.elements.expenseAmount.value;
-    const expenseCategory = event.target.elements.expenseCategory.value;
-    setExpenses([...expenses, { name: expenseName, amount: expenseAmount, category: expenseCategory }]);
-    event.target.reset();
+  const handleTotalAmountChange = (event) => {
+    setTotalAmount(event.target.value);
   };
 
-  const calculateTotalExpenses = () => {
-    let total = 0;
-    for (let i = 0; i < expenses.length; i++) {
-      total += parseInt(expenses[i].amount);
+  const handleUserAmountChange = (event) => {
+    setUserAmount(event.target.value);
+  };
+
+  const handleProductTitleChange = (event) => {
+    setProductTitle(event.target.value);
+  };
+
+  const handleTotalAmountButtonClick = () => {
+    const tempAmount = parseInt(totalAmount);
+    if (isNaN(tempAmount) || tempAmount < 0) {
+      alert("Please enter a valid budget amount.");
+      return;
     }
-    return total;
+    setBalanceValue(tempAmount);
+    setExpenditureValue(0);
+    setExpensesList([]);
+    setTotalAmount("");
   };
 
-  const calculateBalance = () => {
-    return budget - calculateTotalExpenses();
+  const handleCheckAmountButtonClick = () => {
+    if (!userAmount || !productTitle) {
+      alert("Please enter a product name and an amount.");
+      return;
+    }
+    const expense = parseInt(userAmount);
+    const sum = expenditureValue + expense;
+    const totalBalance = balanceValue - expense;
+    if (totalBalance < 0) {
+      alert("You have exceeded your budget!");
+      return;
+    }
+    setBalanceValue(totalBalance);
+    setExpenditureValue(sum);
+    setExpensesList([
+      ...expensesList,
+      { productTitle: productTitle, amount: expense },
+    ]);
+    setProductTitle("");
+    setUserAmount("");
+  };
+
+  const handleEditButtonClick = (index) => {
+    const expense = expensesList[index];
+    setProductTitle(expense.productTitle);
+    setUserAmount(expense.amount);
+    setExpensesList([
+      ...expensesList.slice(0, index),
+      ...expensesList.slice(index + 1),
+    ]);
+    setBalanceValue(balanceValue + expense.amount);
+    setExpenditureValue(expenditureValue - expense.amount);
+  };
+
+  const handleDeleteButtonClick = (index) => {
+    const expense = expensesList[index];
+    setExpensesList([
+      ...expensesList.slice(0, index),
+      ...expensesList.slice(index + 1),
+    ]);
+    setBalanceValue(balanceValue + expense.amount);
+    setExpenditureValue(expenditureValue - expense.amount);
   };
 
   return (
-    <div className="budget-tracker">
+    <div>
       <h1>Budget Tracker</h1>
-      <form onSubmit={addExpense}>
-        <label htmlFor="expenseName">Expense Name:</label>
-        <input type="text" id="expenseName" name="expenseName" required />
+      <label>
+        Total Budget Amount:{" "}
+        <input
+          type="number"
+          value={totalAmount}
+          onChange={handleTotalAmountChange}
+        />
+      </label>
+      <button onClick={handleTotalAmountButtonClick}>Set Budget</button>
+      <p>Balance: {balanceValue}</p>
+      <p>Expenditure: {expenditureValue}</p>
+      <label>
+        Product Name:{" "}
+        <input
+          type="text"
+          value={productTitle}
+          onChange={handleProductTitleChange}
+        />
+      </label>
+      <label>
+        Amount:{" "}
+        <input
+          type="number"
+          value={userAmount}
+          onChange={handleUserAmountChange}
+        />
+      </label>
+      <button onClick={handleCheckAmountButtonClick}>Add Expense</button>
+      <h2>Expenses List</h2>
 
-        <label htmlFor="expenseAmount">Expense Amount:</label>
-        <input type="number" id="expenseAmount" name="expenseAmount" required />
+      <table>
+        <thead>
+          <tr>
+            <th>Product Name</th>
+            <th>Amount</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {expensesList.map((expense, index) => (
+            <tr key={index}>
+              <td>{expense.productTitle}</td>
+              <td>{expense.amount}</td>
 
-        <label htmlFor="expenseCategory">Expense Category:</label>
-        <select id="expenseCategory" name="expenseCategory" required>
-          <option value="">--Please choose a category--</option>
-          <option value="food">Food</option>
-          <option value="rent">Rent</option>
-          <option value="utilities">Utilities</option>
-          <option value="entertainment">Entertainment</option>
-          <option value="other">Other</option>
-        </select>
-
-        <button type="submit">Add Expense</button>
-      </form>
-
-      <div className="expense-list">
-        <h2>Expense List</h2>
-        <ul>
-          {expenses.map((expense, index) => (
-            <li key={index}>
-              {expense.name} - ${expense.amount} ({expense.category})
-            </li>
+              <td>
+                <button onClick={() => handleEditButtonClick(index)}>
+                  Edit </button>
+              </td>
+              <td>
+                <button onClick={() => handleDeleteButtonClick(index)}>
+                  Delete
+                </button>
+              </td>
+            </tr>
           ))}
-        </ul>
-      </div>
-
-      <div className="budget-summary">
-        <h2>Budget Summary</h2>
-        <p>Total Budget: ${budget}</p>
-        <p>Total Expenses: ${calculateTotalExpenses()}</p>
-        <p>Balance: ${calculateBalance()}</p>
-      </div>
+        </tbody>
+      </table>
     </div>
   );
 }
