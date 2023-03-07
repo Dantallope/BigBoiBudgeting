@@ -8,7 +8,7 @@
 /* Set font and color */
 body {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
-  color: #3c3744;
+  color: var(--blue);
 }
 
 div {
@@ -35,7 +35,7 @@ label {
 input[type="text"],
 input[type="number"] {
   padding: 0.5em;
-  border: 1px solid #fbfff1;
+  border: 1px solid var(--white);
   border-radius: 3px;
 }
 
@@ -44,8 +44,8 @@ button {
   display: block;
   margin-top: 1em;
   padding: 0.5em;
-  background-color: #3066be;
-  color: #fbfff1;
+  background-color: var(--orange);
+  color: var(--blue);
   border: none;
   border-radius: 3px;
   cursor: pointer;
@@ -61,18 +61,18 @@ table {
 th, td {
   padding: 0.5em;
   text-align: left;
-  border-bottom: 1px solid #fbfff1;
+  border-bottom: 1px solid var(--white);
 }
 
 th {
-  background-color: #3066be;
-  color: #fbfff1;
+  background-color: var(--blue);
+  color: var(--white);
 }
 
 /* Style the Edit and Delete buttons */
 button {
-  background-color: #3066be;
-  color: fbfff1;
+  background-color: var(--orange);
+  color: var(--blue);
   border: none;
   border-radius: 3px;
   padding: 0.5em;
@@ -80,7 +80,7 @@ button {
 }
 
 button:hover {
-  background-color: #9fb7e4d0;
+  opacity: 0.5;
 }
 @media screen and (max-width: 600px) {
   .wrapper {

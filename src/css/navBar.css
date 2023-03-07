@@ -7,7 +7,8 @@
 }
 
 .navbar {
-    background-color: #3055be;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+    background-color: var(--blue);
     border-radius: 10px;
     display: flex;
     justify-content: space-between;
@@ -42,13 +43,13 @@
   }
   
   .navbar-link {
-    color: white;
+    color: var(--white);
     font-weight: bold;
     text-decoration: none;
   }
   
   .navbar-dropdown {
-    background-color: #3055be;
+    background-color: var(--blue);
     border-radius: 10px;
     display: none;
     position: absolute;
