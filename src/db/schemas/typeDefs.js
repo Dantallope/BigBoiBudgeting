@@ -7,6 +7,14 @@ const typeDefs = gql`
     password: String!
     budget: Int!
   }
+
+  type Query {
+    user(id: ID!): User
+  }
+
+  type Mutation {
+    createUser(  _id: ID!, email: String!, password: String!, budget: Int!): User
+  }
 `;
 
 module.exports = typeDefs;
