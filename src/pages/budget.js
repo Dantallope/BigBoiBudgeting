@@ -1,122 +1,146 @@
 import React, { useState } from "react";
 import '../src/css/budget.css';
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
-import { faExclamationTriangle } from "@fortawesome/free-solid-svg-icons";
 
 function BudgetTracker() {
-  const [budget, setBudget] = useState(0);
+  const [totalAmount, setTotalAmount] = useState("");
+  const [userAmount, setUserAmount] = useState("");
   const [productTitle, setProductTitle] = useState("");
-  const [productCost, setProductCost] = useState("");
-  const [expenses, setExpenses] = useState([]);
-  const [error, setError] = useState("");
+  const [expenditureValue, setExpenditureValue] = useState(0);
+  const [balanceValue, setBalanceValue] = useState(0);
+  const [expensesList, setExpensesList] = useState([]);
 
-  const handleBudgetChange = (event) => {
-    const amount = parseInt(event.target.value);
-    if (isNaN(amount) || amount < 0) {
-      setError("You call this a budget?");
-    } else {
-      setBudget(amount);
-      setError("");
-    }
+  const handleTotalAmountChange = (event) => {
+    setTotalAmount(event.target.value);
+  };
+
+  const handleUserAmountChange = (event) => {
+    setUserAmount(event.target.value);
   };
 
   const handleProductTitleChange = (event) => {
     setProductTitle(event.target.value);
   };
 
-  const handleProductCostChange = (event) => {
-    setProductCost(parseInt(event.target.value));
+  const handleTotalAmountButtonClick = () => {
+    const tempAmount = parseInt(totalAmount);
+    if (isNaN(tempAmount) || tempAmount < 0) {
+      alert("Please enter a valid budget amount.");
+      return;
+    }
+    setBalanceValue(tempAmount);
+    setExpenditureValue(0);
+    setExpensesList([]);
+    setTotalAmount("");
   };
 
-  const handleCheckAmount = () => {
-    if (productTitle.trim() === "") {
-      setError("Values cannot be empty");
+  const handleCheckAmountButtonClick = () => {
+    if (!userAmount || !productTitle) {
+      alert("Please enter a product name and an amount.");
       return;
     }
-    if (isNaN(productCost) || productCost <= 0) {
-      setError("Don't lie to yourself");
+    const expense = parseInt(userAmount);
+    const sum = expenditureValue + expense;
+    const totalBalance = balanceValue - expense;
+    if (totalBalance < 0) {
+      alert("You have exceeded your budget!");
       return;
     }
-    const newExpenses = [...expenses, { title: productTitle, cost: productCost }];
-    setExpenses(newExpenses);
+    setBalanceValue(totalBalance);
+    setExpenditureValue(sum);
+    setExpensesList([
+      ...expensesList,
+      { productTitle: productTitle, amount: expense },
+    ]);
     setProductTitle("");
-    setProductCost("");
-    setError("");
+    setUserAmount("");
   };
 
-  const totalExpenses = expenses.reduce((total, expense) => total + expense.cost, 0);
-  const balance = budget - totalExpenses;
+  const handleEditButtonClick = (index) => {
+    const expense = expensesList[index];
+    setProductTitle(expense.productTitle);
+    setUserAmount(expense.amount);
+    setExpensesList([
+      ...expensesList.slice(0, index),
+      ...expensesList.slice(index + 1),
+    ]);
+    setBalanceValue(balanceValue + expense.amount);
+    setExpenditureValue(expenditureValue - expense.amount);
+  };
+
+  const handleDeleteButtonClick = (index) => {
+    const expense = expensesList[index];
+    setExpensesList([
+      ...expensesList.slice(0, index),
+      ...expensesList.slice(index + 1),
+    ]);
+    setBalanceValue(balanceValue + expense.amount);
+    setExpenditureValue(expenditureValue - expense.amount);
+  };
 
   return (
-    <div className="wrapper">
-      <div className="container">
-        <div className="sub-container">
-          {/* Budget */}
-          <div className="total-amount-container">
-            <h3>Budget</h3>
-            <p className={`hide error ${error && "show"}`}>{error}</p>
-            <input
-              type="number"
-              id="total-amount"
-              placeholder="Enter Total Amount"
-              onChange={handleBudgetChange}
-              value={budget}
-            />
-            <button className="submit" id="total-amount-button">
-              Set Budget
-            </button>
-          </div>
-          {/* Expenditure */}
-          <div className="user-amount-container">
-            <h3>Expenses</h3>
-            <p className={`hide error ${error && "show"}`}>{error}</p>
-            <input
-              type="text"
-              className="product-title"
-              id="product-title"
-              placeholder="What did you buy this time?"
-              onChange={handleProductTitleChange}
-              value={productTitle}
-            />
-            <input
-              type="number"
-              id="user-amount"
-              placeholder="Enter Cost of Product"
-              onChange={handleProductCostChange}
-              value={productCost}
-            />
-            <button className="submit" id="check-amount" onClick={handleCheckAmount}>
-              <FontAwesomeIcon icon={faCheckCircle} />
-            </button>
-          </div>
-        </div>
-        {/* Output */}
-        <div className="output-container flex-space">
-          <div>
-            <p>Total Budget</p>
-            <span id="amount">{budget}</span>
-          </div>
-          <div>
-            <p>Expenses</p>
-            <span id="expenditure-value">{totalExpenses}</span>
-          </div>
-          <div>
-            <p>Balance</p>
-            <span id="balance-amount">{balance}</span>
-          </div>
-        </div>
-      </div>
-      {/* List */}
-      <div className="list">
-          <h3>Expense List</h3>
-          <div className="list-container" id="list">
-        </div>
-      </div>
+    <div>
+      <h1>Budget Tracker</h1>
+      <label>
+        Total Budget Amount:{" "}
+        <input
+          type="number"
+          value={totalAmount}
+          onChange={handleTotalAmountChange}
+        />
+      </label>
+      <button onClick={handleTotalAmountButtonClick}>Set Budget</button>
+      <p>Balance: {balanceValue}</p>
+      <p>Expenditure: {expenditureValue}</p>
+      <label>
+        Product Name:{" "}
+        <input
+          type="text"
+          value={productTitle}
+          onChange={handleProductTitleChange}
+        />
+      </label>
+      <label>
+        Amount:{" "}
+        <input
+          type="number"
+          value={userAmount}
+          onChange={handleUserAmountChange}
+        />
+      </label>
+      <button onClick={handleCheckAmountButtonClick}>Add Expense</button>
+      <h2>Expenses List</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Product Name</th>
+            <th>Amount</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {expensesList.map((expense, index) => (
+            <tr key={index}>
+              <td>{expense.productTitle}</td>
+              <td>{expense.amount}</td>
+
+              <td>
+                <button onClick={() => handleEditButtonClick(index)}>
+                  Edit </button>
+              </td>
+              <td>
+                <button onClick={() => handleDeleteButtonClick(index)}>
+                  Delete
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
-  )
+  );
 }
-          
 
 export default BudgetTracker;
