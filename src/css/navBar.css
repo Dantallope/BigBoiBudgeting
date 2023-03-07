@@ -1,3 +1,11 @@
+:root {
+  --white: #efefef;
+  --blue: #012d46;
+  --grey: #5f5f5f;
+  --orange: #ef8113;
+  --red: #d21327;
+}
+
 .navbar {
     background-color: #3055be;
     border-radius: 10px;
