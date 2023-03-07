@@ -1,3 +1,10 @@
+:root {
+  --white: #efefef;
+  --blue: #012d46;
+  --grey: #5f5f5f;
+  --orange: #ef8113;
+  --red: #d21327;
+}
 
 .container {
     display: flex;

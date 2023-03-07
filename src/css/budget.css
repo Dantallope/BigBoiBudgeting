@@ -1,6 +1,13 @@
+:root {
+  --white: #efefef;
+  --blue: #012d46;
+  --grey: #5f5f5f;
+  --orange: #ef8113;
+  --red: #d21327;
+}
 /* Set font and color */
 body {
-  font-family: Arial, sans-serif;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
   color: #3c3744;
 }
 
