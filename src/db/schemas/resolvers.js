@@ -1,3 +1,5 @@
+const {User} = require('../models');
+
 const resolvers = {
     Query: {
       user: async (_, { id }) => {
@@ -22,3 +24,5 @@ const resolvers = {
         },
       },
     };
+
+    module.exports = resolvers;
