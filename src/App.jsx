@@ -14,7 +14,6 @@ import ContactUs from './pages/contact-us'
 import SignIn from './pages/sign-in'
 
 //Xavier 
-/*
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 
 
@@ -22,7 +21,7 @@ const client = new ApolloClient({
   uri: '/graphql',
   cache: new InMemoryCache(),
 });
-*/
+
 const router = createBrowserRouter([
   {
     path:"/",
@@ -62,7 +61,9 @@ const router = createBrowserRouter([
 
 function App(){
   return <div className="App">
+    <ApolloProvider client={client}>
     <RouterProvider router={router} />
+    </ApolloProvider>
   </div>;
 }
 
