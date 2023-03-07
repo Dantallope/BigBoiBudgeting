@@ -11,7 +11,7 @@ import Feature4Img from '../images/Dante.png';
 import Avatar1Img from '../images/Dante.png';
 import Avatar2Img from '../images/Dante.png';
 import Avatar3Img from '../images/Dante.png';
-import LogoV2 from '../images/Dante.png';
+import LogoV2 from '../images/Artboard 1 copy@4x.png';
 import HeroImage from '../images/Dante.png';
 import Feature1BgImg from '../images/Dante.png';
 import Feature2BgImg from '../images/Dante.png';

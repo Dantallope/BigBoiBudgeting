@@ -2,10 +2,11 @@ import React from 'react';
 
 // import about data
 import { aboutData } from '../db/data';
+import LogoV2 from '../images/Artboard 1 copy@4x.png';
 
 const About = () => {
   // destructure about
-  const { image, title, subtitle } = aboutData;
+  const { Logo, title, subtitle } = aboutData;
   return (
     <section
       className='my-[30px] xl:mt-[100px]'
@@ -16,7 +17,7 @@ const About = () => {
         <div className='bg-accent-secondary/[15%] rounded-[50px] min-h-[560px] px-12 pb-12 flex flex-col text-center xl:flex-row xl:items-center xl:text-left  xl:gap-x-[60px] xl:pb-0'>
           {/* image */}
           <div className='flex-1' data-aos='zoom-in-left'>
-            <img src={image} alt='' style={{ maxWidth: '100%' }} />
+            <img src={LogoV2} alt='' style={{ maxWidth: '50%' }}/>
           </div>
           {/* text */}
           <div className='flex-1 xl:pr-12'>
