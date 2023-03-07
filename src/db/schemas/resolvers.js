@@ -13,13 +13,13 @@ const resolvers = {
     },
 
     Mutation: {
-        createUser: async (_, { id, email, password }) => {
-          const user = new User({ id, email, password });
+        createUser: async (_, { id, email, password, budget }) => {
+          const user = new User({ id, email, password, budget });
           await user.save();
           return user;
         },
-        updateUser: async (_, { id, email, password }) => {
-          const user = await User.findByIdAndUpdate(id, { id, email, password }, { new: true });
+        updateUser: async (_, { id, email, password, budget }) => {
+          const user = await User.findByIdAndUpdate(id, { id, email, password, budget }, { new: true });
           return user;
         },
       },
