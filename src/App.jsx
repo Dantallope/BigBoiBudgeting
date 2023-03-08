@@ -12,6 +12,7 @@ import About from './pages/about'
 import Services from './pages/services'
 import ContactUs from './pages/contact-us'
 import SignIn from './pages/sign-in'
+import Budget from './pages/budget'
 
 //Xavier 
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
@@ -38,6 +39,11 @@ const router = createBrowserRouter([
       {
         path:"/about",
         element:<About/>,
+        errorElement:<Error/>
+      },
+      {
+        path:"/budget",
+        element:<Budget/>,
         errorElement:<Error/>
       },
       {
