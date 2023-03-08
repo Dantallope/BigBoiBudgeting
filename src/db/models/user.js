@@ -1,4 +1,5 @@
 const { Schema, model, Types } = require('mongoose')
+const bcrypt = require("bcrypt")
 
 const userSchema = new Schema({
     id: Schema.Types.ObjectId,
@@ -19,7 +20,11 @@ const userSchema = new Schema({
         required: true,
     }
 
-})
+});
+
+userSchema.methods.validatePassword = async function (password) {
+	return bcrypt.compare(password, this.password)
+}
 
 const User = model('User', userSchema);
 
