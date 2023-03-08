@@ -15,13 +15,13 @@ const resolvers = {
     },
 
     Mutation: {
-        createUser: async (_, { id, email, password, budget }) => {
-          const user = new User({ id, email, password, budget });
+        createUser: async (_, { id,username, email, password, budget }) => {
+          const user = new User({ id, username, email, password, budget });
           await user.save();
           return user;
         },
-        updateUser: async (_, { id, email, password, budget }) => {
-          const user = await User.findByIdAndUpdate(id, { id, email, password, budget }, { new: true });
+        updateUser: async (_, { id, username, email, password, budget }) => {
+          const user = await User.findByIdAndUpdate(id, { id, username, email, password, budget }, { new: true });
           return user;
         },
         signUp: async (parent, { username, email, password }) => {

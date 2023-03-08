@@ -13,7 +13,6 @@ const typeDefs = gql`
     password: String!
     budget: Int!
   }
-
   
 	type Auth {
 		user: User
