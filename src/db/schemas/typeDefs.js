@@ -14,6 +14,12 @@ const typeDefs = gql`
     budget: Int!
   }
 
+  
+	type Auth {
+		user: User
+		token: ID!
+	}
+
   type Query {
     user(id: ID!): User
     users: [User]

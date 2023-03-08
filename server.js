@@ -21,7 +21,8 @@ const port = process.env.PORT || 3001
 app.get('/', (re, res) => {
     res.sendFile(path.join(__dirname, './public/index.html'));
   });
-async function serverStart() {
+
+  async function serverStart() {
   await server.start();
 
   db.once('open', () => {
