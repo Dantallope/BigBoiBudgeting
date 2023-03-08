@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import '../src/css/budget.css';
+import '../css/budget.css';
 
 
 function BudgetTracker() {

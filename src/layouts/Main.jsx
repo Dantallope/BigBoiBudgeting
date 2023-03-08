@@ -36,6 +36,9 @@ export function mainLoader(){
                     <NavLink to="/services">
                         Services
                     </NavLink>
+                    <NavLink to="/budget">
+                        Budget
+                    </NavLink>
                     <NavLink to="/contact-us">
                         Contact Us
                     </NavLink>
