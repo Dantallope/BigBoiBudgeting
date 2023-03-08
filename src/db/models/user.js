@@ -3,6 +3,11 @@ const bcrypt = require("bcrypt")
 
 const userSchema = new Schema({
     id: Schema.Types.ObjectId,
+    username: {
+			type: String,
+			required: true,
+			unique: true,
+		},
     email: {
         type: String, 
         lowercase: true, 
