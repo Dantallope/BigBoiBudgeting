@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import '../src/css/budget.css';
 import { useQuery, useMutation } from '@apollo/client';
 import { gql } from '../db/schemas/typeDefs';
+import '../css/budget.css';
 
 function Budget() {
   const [budget, setBudget] = useState(0);
