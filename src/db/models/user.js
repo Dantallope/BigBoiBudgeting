@@ -17,11 +17,12 @@ const userSchema = new Schema({
     },
     password: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
 
     budget: {
-        type: Number,
+        type: String,
         required: true,
     }
 
