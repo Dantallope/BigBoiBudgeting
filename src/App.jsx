@@ -12,9 +12,9 @@ import About from './pages/about'
 import Services from './pages/services'
 import ContactUs from './pages/contact-us'
 import SignIn from './pages/sign-in'
+import Budget from './pages/budget'
 
 //Xavier 
-/*
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 
 
@@ -22,7 +22,7 @@ const client = new ApolloClient({
   uri: '/graphql',
   cache: new InMemoryCache(),
 });
-*/
+
 const router = createBrowserRouter([
   {
     path:"/",
@@ -39,6 +39,11 @@ const router = createBrowserRouter([
       {
         path:"/about",
         element:<About/>,
+        errorElement:<Error/>
+      },
+      {
+        path:"/budget",
+        element:<Budget/>,
         errorElement:<Error/>
       },
       {
@@ -62,7 +67,9 @@ const router = createBrowserRouter([
 
 function App(){
   return <div className="App">
+    <ApolloProvider client={client}>
     <RouterProvider router={router} />
+    </ApolloProvider>
   </div>;
 }
 

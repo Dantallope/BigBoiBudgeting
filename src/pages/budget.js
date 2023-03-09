@@ -3,6 +3,7 @@ import '../src/css/budget.css';
 import { Doughnut } from "react-chartjs-2";
 
 
+// }};
 
 function BudgetTracker() {
   const [totalAmount, setTotalAmount] = useState("");
@@ -39,7 +40,7 @@ function BudgetTracker() {
   const handleTotalAmountButtonClick = () => {
     const tempAmount = parseInt(totalAmount);
     if (isNaN(tempAmount) || tempAmount < 0) {
-      alert("Please enter a valid budget amount.");
+      alert("Imagine having no budget");
       return;
     }
     setBalanceValue(tempAmount);
@@ -50,7 +51,7 @@ function BudgetTracker() {
 
   const handleCheckAmountButtonClick = () => {
     if (!userAmount || !productTitle) {
-      alert("Please enter a product name and an amount.");
+      alert("I guess it too much to enter both a product name and an amount.");
       return;
     }
   
@@ -59,7 +60,7 @@ function BudgetTracker() {
     const totalBalance = balanceValue - expense;
   
     if (totalBalance < 0) {
-      alert("You have exceeded your budget!");
+      alert("Let's try a little harder. . .");
       return;
     }
   
@@ -103,8 +104,10 @@ function BudgetTracker() {
   };
 
   return (
-    <div>
-      <h1>Budget Tracker</h1>
+    <div id="budget-tracker">
+      <h1 id="budget-head" >Budget Tracker</h1>
+      
+      <div id="section-one">
       <label>
         Total Budget Amount:{" "}
         <input
@@ -113,9 +116,12 @@ function BudgetTracker() {
           onChange={handleTotalAmountChange}
         />
       </label>
-      <button onClick={handleTotalAmountButtonClick}>Set Budget</button>
+      <button id="setBudgetBttn" onClick={handleTotalAmountButtonClick}>Set Budget</button>
       <p>Balance: {balanceValue}</p>
-      <p>Expenditure: {expenditureValue}</p>
+      <p>Total Expenses: {expenditureValue}</p>
+      </div>
+
+      <div id="section-two">
       <label>
         Product Name:{" "}
         <input
@@ -133,6 +139,9 @@ function BudgetTracker() {
         />
       </label>
       <button onClick={handleCheckAmountButtonClick}>Add Expense</button>
+      </div>
+
+      <div id="section-three">
       <h2>Expenses List</h2>
 
       <table>
@@ -151,13 +160,10 @@ function BudgetTracker() {
               <td>{expense.amount}</td>
 
               <td>
-                <button onClick={() => handleEditButtonClick(index)}>
-                  Edit </button>
+                <button onClick={() => handleEditButtonClick(index)}> Edit </button>
               </td>
               <td>
-                <button onClick={() => handleDeleteButtonClick(index)}>
-                  Delete
-                </button>
+                <button onClick={() => handleDeleteButtonClick(index)}> Delete </button>
               </td>
             </tr>
           ))}

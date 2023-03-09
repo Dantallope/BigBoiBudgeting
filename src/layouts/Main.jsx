@@ -12,6 +12,9 @@ import {
 import { fetchData } from '../tools'
 // loader
 
+//import logo
+import LogoV2 from '../images/Artboard 1 copy@4x.png';
+
 export function mainLoader(){
     const userName = fetchData("userName");
     return {userName}
@@ -22,18 +25,21 @@ export function mainLoader(){
         <>
             <Nav>
                 <NavLink to="/">
-                    {/* <img src="" alt=""/> */}
+                    <img src={LogoV2} alt="BigBoiBudget" style={{ maxWidth: '170px' }}/>
                     <h1>Logo</h1>
                 </NavLink>
                 <Bars />
                 <NavMenu>
-                    <NavLink to="/about" activeStyle>
+                    <NavLink to="/about">
                         About
                     </NavLink>
-                    <NavLink to="/services" activeStyle>
+                    <NavLink to="/services">
                         Services
                     </NavLink>
-                    <NavLink to="/contact-us" activeStyle>
+                    <NavLink to="/budget">
+                        Budget
+                    </NavLink>
+                    <NavLink to="/contact-us">
                         Contact Us
                     </NavLink>
                 </NavMenu>
