@@ -18,9 +18,9 @@ app.use(express.json());
 
 const port = process.env.PORT || 3001
 
-app.get('/', (re, res) => {
-    res.sendFile(path.join(__dirname, './public/index.html'));
-  });
+//app.get('/', (re, res) => {
+  //  res.sendFile(path.join(__dirname, './public/index.html'));
+  //});
 
   async function serverStart() {
   await server.start();
