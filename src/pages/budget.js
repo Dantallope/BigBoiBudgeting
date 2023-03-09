@@ -1,22 +1,7 @@
 import React, { useState } from "react";
-import '../css/budget.css';
-// import { useQuery, useMutation } from '@apollo/client';
-// import { createUser, updateUser, users } from '../db/schemas/typeDefs';
-// import { gql } from '../db/schemas/typeDefs';
+import { useNavigate } from 'react-router-dom';
 import '../css/budget.css';
 
-// function Budget() {
-//   const [budget, setBudget] = useState(0);
-
-//   const { loading, error, data } = useQuery(users);
-//   const [createUser, { loading: mutationLoading, error: mutationError }] = useMutation(createUser);
-
-//    const handleSubmit = (event) => {
-//     event.preventDefault();
-
-//     updateUser({ variables: { id: data.budget.id, amount: budget } });
-
-// }};
 
 function BudgetTracker() {
   const [totalAmount, setTotalAmount] = useState("");
@@ -26,6 +11,20 @@ function BudgetTracker() {
   const [balanceValue, setBalanceValue] = useState(0);
   const [expensesList, setExpensesList] = useState([]);
 
+  const [chartData, setChartData] = useState({
+    labels: ["Balance", "Expenditure"],
+    datasets: [
+      {
+        data: [balanceValue, expenditureValue],
+        backgroundColor: ["#36a2eb", "#ff6384"],
+        hoverBackgroundColor: ["#36a2eb", "#ff6384"],
+      },
+    ],
+  });
+
+  
+
+  
   const handleTotalAmountChange = (event) => {
     setTotalAmount(event.target.value);
   };
@@ -55,13 +54,16 @@ function BudgetTracker() {
       alert("I guess it too much to enter both a product name and an amount.");
       return;
     }
+  
     const expense = parseInt(userAmount);
     const sum = expenditureValue + expense;
     const totalBalance = balanceValue - expense;
+  
     if (totalBalance < 0) {
       alert("Let's try a little harder. . .");
       return;
     }
+  
     setBalanceValue(totalBalance);
     setExpenditureValue(sum);
     setExpensesList([
@@ -70,7 +72,14 @@ function BudgetTracker() {
     ]);
     setProductTitle("");
     setUserAmount("");
+  
+    setChartData((prevState) => {
+      const newData = [...prevState.datasets];
+      newData[0].data = [totalBalance, sum];
+      return { ...prevState, datasets: newData };
+    });
   };
+  
 
   const handleEditButtonClick = (index) => {
     const expense = expensesList[index];
@@ -114,7 +123,7 @@ function BudgetTracker() {
 
       <div id="section-two">
       <label>
-        Product Name:{" "}
+        Product/Services Name:{" "}
         <input
           type="text"
           value={productTitle}
@@ -138,7 +147,7 @@ function BudgetTracker() {
       <table>
         <thead>
           <tr>
-            <th>Product Name</th>
+            <th>Product/Services </th>
             <th>Amount</th>
             <th>Edit</th>
             <th>Delete</th>
@@ -160,8 +169,9 @@ function BudgetTracker() {
           ))}
         </tbody>
       </table>
-      </div>
+      
     </div>
+  </div>
   );
 }
 

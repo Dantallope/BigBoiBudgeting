@@ -12,6 +12,10 @@ const resolvers = {
         const users = await User.find();
         return users;
       },
+      users: async () => {
+        const users = await User.find();
+        return users;
+      },
     },
 
     Mutation: {
@@ -28,6 +32,14 @@ const resolvers = {
           const user = await User.create({ username, email, password })
           const token = signToken(user)
           return { user, token }
+        },
+        setBudget: async (_, { input }, { user }) => {
+          if (!user) {
+            throw new AuthenticationError('You must be logged in to set a budget');
+          }
+          user.budget = input.budget;
+          await user.save();
+          return user;
         },
         signIn: async (parent, { email, password }) => {
           const user = await User.findOne({ email })

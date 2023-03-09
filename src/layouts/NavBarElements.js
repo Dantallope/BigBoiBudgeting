@@ -2,35 +2,35 @@ import styled from 'styled-components';
 import { NavLink as Link } from 'react-router-dom';
 import { FaBars } from 'react-icons/fa';
 
-export const Nav = styled.nav `
+export const Nav = styled.nav`
   background: #012d46;
   height: 80px;
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  padding: 0.5rem calc((100vw - 1000px) / 2);
-  z-index: 10;
-  border: none;
+  margin: 0 auto;
+  max-width: 1000px;
   border-radius: 70rem;
   margin-top: 3rem;
-`
+`;
+
 
 export const NavLink = styled(Link)`
   color: #efefef;
   display: flex;
   align-items: center;
   text-decoration: none;
-  padding: 0rem 1rem; 
+  padding: 0.5rem 1rem;
   height: 100%;
   cursor: pointer;
-  margin-right: 10px; 
+  margin-right: 1rem;
 
   &.active {
     color: #ef8113;
   }
-`
+`;
 
-
-export const Bars = styled(FaBars) `
+export const Bars = styled(FaBars)`
   display: none;
   color: #efefef;
 
@@ -43,9 +43,9 @@ export const Bars = styled(FaBars) `
     font-size: 1.8rem;
     cursor: pointer;
   }
-`
+`;
 
-export const NavMenu = styled.div `
+export const NavMenu = styled.div`
   display: flex;
   align-items: center;
   margin-right: -24px;
@@ -53,8 +53,17 @@ export const NavMenu = styled.div `
   @media screen and (max-width: 768px) {
     display: none;
   }
-`
-export const NavBtn = styled.nav `
+
+  @media screen and (min-width: 768px) {
+    margin-right: 0;
+  }
+
+  ${NavLink}:last-of-type {
+    margin-right: 0;
+  }
+`;
+
+export const NavBtn = styled.nav`
   display: flex;
   align-items: center;
   margin-right: 24px;
@@ -62,22 +71,22 @@ export const NavBtn = styled.nav `
   @media screen and (max-width: 768px) {
     display: none;
   }
-`
+`;
 
-export const NavBtnLink = styled(Link) `
-  border-radius:4px;
-  background:#ef8113;
+export const NavBtnLink = styled(Link)`
+  border-radius: 4px;
+  background: #ef8113;
   padding: 10px 22px;
-  color:#efefef;
-  border:none;
-  outline:none;
-  cursor:pointer;
+  color: #efefef;
+  border: none;
+  outline: none;
+  cursor: pointer;
   transition: all 0.2s ease-in-out;
-  text-decoration:none;
+  text-decoration: none;
 
   &:hover {
     transition: all 0.2s ease-in-out;
-    background:#d21327;
-    color:#012d46;
+    background: #d21327;
+    color: #012d46;
   }
-`
+`;
