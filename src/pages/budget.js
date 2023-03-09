@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import '../src/css/budget.css';
 import { useQuery, useMutation } from '@apollo/client';
-import { gql } from '../db/schemas/typeDefs';
+import { createUser, updateUser, users } from '../db/schemas/typeDefs';
 import '../css/budget.css';
 
 function Budget() {
   const [budget, setBudget] = useState(0);
 
   const { loading, error, data } = useQuery(users);
-  const [createUserMutation, { loading: mutationLoading, error: mutationError }] = useMutation(createUser);
+  const [createUser, { loading: mutationLoading, error: mutationError }] = useMutation(createUser);
 
    const handleSubmit = (event) => {
     event.preventDefault();
 
-    updateUserMutation({ variables: { id: data.budget.id, amount: budget } });
+    updateUser({ variables: { id: data.budget.id, amount: budget } });
 
 }};
 
