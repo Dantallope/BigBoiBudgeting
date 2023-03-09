@@ -1,24 +1,23 @@
 import React, { useState } from "react";
-import '../src/css/budget.css';
-import { useQuery, useMutation } from '@apollo/client';
-import { createUser, updateUser, users } from '../db/schemas/typeDefs';
-//import { useQuery, useMutation } from '@apollo/client';
-//import { gql } from '../db/schemas/typeDefs';
 import '../css/budget.css';
-/*
-function Budget() {
-  const [budget, setBudget] = useState(0);
+// import { useQuery, useMutation } from '@apollo/client';
+// import { createUser, updateUser, users } from '../db/schemas/typeDefs';
+// import { gql } from '../db/schemas/typeDefs';
+import '../css/budget.css';
 
-  const { loading, error, data } = useQuery(users);
-  const [createUser, { loading: mutationLoading, error: mutationError }] = useMutation(createUser);
+// function Budget() {
+//   const [budget, setBudget] = useState(0);
 
-   const handleSubmit = (event) => {
-    event.preventDefault();
+//   const { loading, error, data } = useQuery(users);
+//   const [createUser, { loading: mutationLoading, error: mutationError }] = useMutation(createUser);
 
-    updateUser({ variables: { id: data.budget.id, amount: budget } });
+//    const handleSubmit = (event) => {
+//     event.preventDefault();
 
-}};
-*/
+//     updateUser({ variables: { id: data.budget.id, amount: budget } });
+
+// }};
+
 function BudgetTracker() {
   const [totalAmount, setTotalAmount] = useState("");
   const [userAmount, setUserAmount] = useState("");
@@ -101,15 +100,15 @@ function BudgetTracker() {
       
       <div id="section-one">
       <label>
-        Total Budget Amount:{" "}
+        Total Budget Amount:{Budget}
         <input
           type="number"
-          value={totalAmount}
+          value={setBudget}
           onChange={handleTotalAmountChange}
         />
       </label>
-      <button id="setBudgetBttn" onClick={handleTotalAmountButtonClick}>Set Budget</button>
-      <p>Balance: {balanceValue}</p>
+      <button id="setBudgetBttn" onClick={setBudget}>Set Budget</button>
+      <p>Balance: {Budget}</p>
       <p>Total Expenses: {setExpenseValue}</p>
       </div>
 

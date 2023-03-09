@@ -15,6 +15,13 @@ const typeDefs = gql`
     password: String!
     budget: Int!
   }
+
+  input SignUpUserInput {
+    username: String!
+    email: String!
+    password: String!
+    budget: Int!
+  }
   
 	type Auth {
 		user: User
@@ -29,6 +36,8 @@ const typeDefs = gql`
   type Mutation {
     createUser(input: CreateUserInput!): User!
     updateUser(_id: ID!, email: String!, password: String!, budget: Int!): User
+    signUp(input: SignUpUserInput!): Auth
+    signIn(email: String!, password: String!): Auth!
   }
 `;
 
