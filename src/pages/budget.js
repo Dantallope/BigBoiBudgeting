@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import '../src/css/budget.css';
+import { Doughnut } from "react-chartjs-2";
+
 
 
 function BudgetTracker() {
@@ -10,6 +12,18 @@ function BudgetTracker() {
   const [balanceValue, setBalanceValue] = useState(0);
   const [expensesList, setExpensesList] = useState([]);
 
+  const [chartData, setChartData] = useState({
+    labels: ["Balance", "Expenditure"],
+    datasets: [
+      {
+        data: [balanceValue, expenditureValue],
+        backgroundColor: ["#36a2eb", "#ff6384"],
+        hoverBackgroundColor: ["#36a2eb", "#ff6384"],
+      },
+    ],
+  });
+
+  
   const handleTotalAmountChange = (event) => {
     setTotalAmount(event.target.value);
   };
@@ -39,13 +53,16 @@ function BudgetTracker() {
       alert("Please enter a product name and an amount.");
       return;
     }
+  
     const expense = parseInt(userAmount);
     const sum = expenditureValue + expense;
     const totalBalance = balanceValue - expense;
+  
     if (totalBalance < 0) {
       alert("You have exceeded your budget!");
       return;
     }
+  
     setBalanceValue(totalBalance);
     setExpenditureValue(sum);
     setExpensesList([
@@ -54,7 +71,14 @@ function BudgetTracker() {
     ]);
     setProductTitle("");
     setUserAmount("");
+  
+    setChartData((prevState) => {
+      const newData = [...prevState.datasets];
+      newData[0].data = [totalBalance, sum];
+      return { ...prevState, datasets: newData };
+    });
   };
+  
 
   const handleEditButtonClick = (index) => {
     const expense = expensesList[index];
@@ -139,6 +163,7 @@ function BudgetTracker() {
           ))}
         </tbody>
       </table>
+      <Doughnut data={chartData} />
     </div>
   );
 }
