@@ -1,9 +1,6 @@
 import React, { useState } from "react";
-import '../src/css/budget.css';
-import { Doughnut } from "react-chartjs-2";
+import '../css/budget.css';
 
-
-// }};
 
 function BudgetTracker() {
   const [totalAmount, setTotalAmount] = useState("");
@@ -123,7 +120,7 @@ function BudgetTracker() {
 
       <div id="section-two">
       <label>
-        Product Name:{" "}
+        Product/Services Name:{" "}
         <input
           type="text"
           value={productTitle}
@@ -147,7 +144,7 @@ function BudgetTracker() {
       <table>
         <thead>
           <tr>
-            <th>Product Name</th>
+            <th>Product/Services </th>
             <th>Amount</th>
             <th>Edit</th>
             <th>Delete</th>
@@ -169,8 +166,9 @@ function BudgetTracker() {
           ))}
         </tbody>
       </table>
-      <Doughnut data={chartData} />
+      
     </div>
+  </div>
   );
 }
 
