@@ -1,20 +1,7 @@
 import React, { useState } from "react";
-import '../css/budget.css';
-// import { useQuery, useMutation } from '@apollo/client';
-// import { createUser, updateUser, users } from '../db/schemas/typeDefs';
-// import { gql } from '../db/schemas/typeDefs';
-import '../css/budget.css';
+import '../src/css/budget.css';
+import { Doughnut } from "react-chartjs-2";
 
-// function Budget() {
-//   const [budget, setBudget] = useState(0);
-
-//   const { loading, error, data } = useQuery(users);
-//   const [createUser, { loading: mutationLoading, error: mutationError }] = useMutation(createUser);
-
-//    const handleSubmit = (event) => {
-//     event.preventDefault();
-
-//     updateUser({ variables: { id: data.budget.id, amount: budget } });
 
 // }};
 
@@ -22,10 +9,22 @@ function BudgetTracker() {
   const [totalAmount, setTotalAmount] = useState("");
   const [userAmount, setUserAmount] = useState("");
   const [productTitle, setProductTitle] = useState("");
-  const [expenseValue, setExpenseValue] = useState(0);
+  const [expenditureValue, setExpenditureValue] = useState(0);
   const [balanceValue, setBalanceValue] = useState(0);
   const [expensesList, setExpensesList] = useState([]);
 
+  const [chartData, setChartData] = useState({
+    labels: ["Balance", "Expenditure"],
+    datasets: [
+      {
+        data: [balanceValue, expenditureValue],
+        backgroundColor: ["#36a2eb", "#ff6384"],
+        hoverBackgroundColor: ["#36a2eb", "#ff6384"],
+      },
+    ],
+  });
+
+  
   const handleTotalAmountChange = (event) => {
     setTotalAmount(event.target.value);
   };
@@ -45,7 +44,7 @@ function BudgetTracker() {
       return;
     }
     setBalanceValue(tempAmount);
-    setExpenseValue(0);
+    setExpenditureValue(0);
     setExpensesList([]);
     setTotalAmount("");
   };
@@ -55,22 +54,32 @@ function BudgetTracker() {
       alert("I guess it too much to enter both a product name and an amount.");
       return;
     }
+  
     const expense = parseInt(userAmount);
-    const sum = expenseValue + expense;
+    const sum = expenditureValue + expense;
     const totalBalance = balanceValue - expense;
+  
     if (totalBalance < 0) {
       alert("Let's try a little harder. . .");
       return;
     }
+  
     setBalanceValue(totalBalance);
-    setExpenseValue(sum);
+    setExpenditureValue(sum);
     setExpensesList([
       ...expensesList,
       { productTitle: productTitle, amount: expense },
     ]);
     setProductTitle("");
     setUserAmount("");
+  
+    setChartData((prevState) => {
+      const newData = [...prevState.datasets];
+      newData[0].data = [totalBalance, sum];
+      return { ...prevState, datasets: newData };
+    });
   };
+  
 
   const handleEditButtonClick = (index) => {
     const expense = expensesList[index];
@@ -81,7 +90,7 @@ function BudgetTracker() {
       ...expensesList.slice(index + 1),
     ]);
     setBalanceValue(balanceValue + expense.amount);
-    setExpenseValue(setExpenseValue - expense.amount);
+    setExpenditureValue(expenditureValue - expense.amount);
   };
 
   const handleDeleteButtonClick = (index) => {
@@ -91,7 +100,7 @@ function BudgetTracker() {
       ...expensesList.slice(index + 1),
     ]);
     setBalanceValue(balanceValue + expense.amount);
-    setExpenseValue(setExpenseValue - expense.amount);
+    setExpenditureValue(expenditureValue - expense.amount);
   };
 
   return (
@@ -100,16 +109,16 @@ function BudgetTracker() {
       
       <div id="section-one">
       <label>
-        Total Budget Amount:{Budget}
+        Total Budget Amount:{" "}
         <input
           type="number"
-          value={setBudget}
+          value={totalAmount}
           onChange={handleTotalAmountChange}
         />
       </label>
-      <button id="setBudgetBttn" onClick={setBudget}>Set Budget</button>
-      <p>Balance: {Budget}</p>
-      <p>Total Expenses: {setExpenseValue}</p>
+      <button id="setBudgetBttn" onClick={handleTotalAmountButtonClick}>Set Budget</button>
+      <p>Balance: {balanceValue}</p>
+      <p>Total Expenses: {expenditureValue}</p>
       </div>
 
       <div id="section-two">
@@ -160,7 +169,7 @@ function BudgetTracker() {
           ))}
         </tbody>
       </table>
-      </div>
+      <Doughnut data={chartData} />
     </div>
   );
 }
