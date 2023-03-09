@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import '../src/css/budget.css';
-import { useQuery, useMutation } from '@apollo/client';
-import { gql } from '../db/schemas/typeDefs';
+//import { useQuery, useMutation } from '@apollo/client';
+//import { gql } from '../db/schemas/typeDefs';
 import '../css/budget.css';
-
+/*
 function Budget() {
   const [budget, setBudget] = useState(0);
 
@@ -16,7 +15,7 @@ function Budget() {
     updateUserMutation({ variables: { id: data.budget.id, amount: budget } });
 
 }};
-
+*/
 function BudgetTracker() {
   const [totalAmount, setTotalAmount] = useState("");
   const [userAmount, setUserAmount] = useState("");
