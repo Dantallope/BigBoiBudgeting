@@ -5,10 +5,10 @@
   --orange: #ef8113;
   --red: #d21327;
 }
-/* Set font and color */
+  /* Set default font family and background color */
 body {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
-  color: var(--blue);
+  background-color: var(--white);
 }
 
 div {
@@ -27,61 +27,108 @@ h2 {
   margin-top: 2em;
 }
 
+/* Style the Budget Tracker section */
+#budget-head {
+  color: var(--white);
+  background-color: var(--blue);
+  padding: 20px;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: var(--orange);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin: 40px auto;
+  max-width: 400px;
+}
+
+#budget-tracker h1 {
+  margin-top: 50px;
+}
+
+#section-one, 
+#section-two, 
+#section-three
+{
+  padding: 10px;
+  margin: 20px;
+  border: var(--orange);
+  border-radius: 15px;
+  border-style: solid;
+}
+
+/* Style the input fields */
+#budget-tracker input[type="number"],
+#budget-tracker input[type="text"] {
+  padding: 5px;
+  font-size: 16px;
+  border-radius: 15px;
+  border: 1px solid var(--white);
+  margin: 5px 10px;
+
+}
+
 label {
   display: block;
   margin-top: 1em;
 }
 
-input[type="text"],
-input[type="number"] {
-  padding: 0.5em;
-  border: 1px solid var(--white);
-  border-radius: 3px;
+#budget-tracker input[type="text"] {
+  max-width: 96%;
+}
+/* Style the buttons */
+#budget-tracker button {
+  background-color: var(--orange);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  margin: 10px;
+  font-size: 16px;
 }
 
-/* Style the button */
-button {
-  display: block;
-  margin-top: 1em;
-  padding: 0.5em;
-  background-color: var(--orange);
-  color: var(--blue);
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
+#budget-tracker button:hover {
+  background-color: var(--red);
 }
 
 /* Style the table */
-table {
+#budget-tracker table {
   border-collapse: collapse;
+  margin-top: 20px;
   width: 100%;
-  margin-top: 2em;
 }
 
-th, td {
-  padding: 0.5em;
+#budget-tracker th,
+#budget-tracker td {
+  padding: 10px;
   text-align: left;
-  border-bottom: 1px solid var(--white);
 }
 
-th {
+#budget-tracker th {
   background-color: var(--blue);
-  color: var(--white);
+  color: #fff;
 }
 
-/* Style the Edit and Delete buttons */
-button {
-  background-color: var(--orange);
-  color: var(--blue);
-  border: none;
-  border-radius: 3px;
-  padding: 0.5em;
-  cursor: pointer;
+#budget-tracker tr:nth-child(even) {
+  background-color: #f2f2f2;
 }
 
-button:hover {
-  opacity: 0.5;
+/*edit and delete buttons*/ 
+#budget-tracker button.edit {
+  background-color: #2196f3;
 }
+
+#budget-tracker button.edit:hover {
+  background-color: #0b7dda;
+}
+
+#budget-tracker button.delete {
+  background-color: #f44336;
+}
+
+#budget-tracker button.delete:hover {
+  background-color: #da190b;
+}
+
 @media screen and (max-width: 600px) {
   .wrapper {
     font-size: 14px;
