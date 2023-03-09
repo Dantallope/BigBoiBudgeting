@@ -1,54 +1,50 @@
 import React, { useState } from 'react';
-import '../css/signin.css';
+import jwt from 'jsonwebtoken';
+import { useNavigate } from 'react-router-dom';
 
-//login toggle event
-const SignIn = () => {
-  const [isSignIn, setIsSignIn] = useState(true);
 
-  const handleToggle = () => {
-    setIsSignIn(!isSignIn);
+const LoginPage = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try{
+      const token = jwt.sign({username}, 'secret');
+      localStorage.setItem('token',token);
+      navigate('/');
+    }catch (error){
+      console.error('Error;',error);
+    }
+    
   };
 
-// option to login or sign up 
   return (
-    <div className="container">
-      <h1>{isSignIn ? 'Login' : 'Sign Up'}</h1>
-      <form>
-        <div className="form-control">
-          <label htmlFor="username">Username</label>
-          <input type="text" id="username" />
-        </div>
-        <div className="form-control">
-          <label htmlFor="password">Password</label>
-          <input type="password" id="password" />
-        </div>
-
-
-        {!isSignIn && (
-          <div className="form-control">
-            <label htmlFor="confirm-password">Confirm Password</label>
-            <input type="password" id="confirm-password" />
-          </div>
-        )}
-        <button type="submit">{isSignIn ? 'Login' : 'Sign Up'}</button>
-      </form>
-
-
-      <div className="toggle">
-        {isSignIn ? (
-          <p>
-            Don't have an account?{' '}
-            <button onClick={handleToggle}>Sign Up</button>
-          </p>
-        ) : (
-          <p>
-            Already have an account?{' '}
-            <button onClick={handleToggle}>Login</button>
-          </p>
-        )}
-      </div>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <label>
+        Username:
+        <input
+          type="text"
+          value={username}
+          onChange={(event) => setUsername(event.target.value)}
+        />
+      </label>
+      <br />
+      <label>
+        Password:
+        <input
+          type="password"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+        />
+      </label>
+      <br />
+      <button type="submit">Log In</button>
+    </form>
   );
 };
 
-export default SignIn;
+export default LoginPage;
