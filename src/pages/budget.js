@@ -100,10 +100,10 @@ function BudgetTracker() {
       
       <div id="section-one">
       <label>
-        Total Budget Amount:{Budget}
+        Total Budget Amount:{" "}
         <input
           type="number"
-          value={setBudget}
+          value={totalAmount}
           onChange={handleTotalAmountChange}
         />
       </label>
