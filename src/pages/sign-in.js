@@ -1,50 +1,57 @@
-import React, { useState } from 'react';
-import jwt from 'jsonwebtoken';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-
-const LoginPage = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-
+function SignIn() {
   const navigate = useNavigate();
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [signup, setSignup] = useState(false);
 
-    try{
-      const token = jwt.sign({username}, 'secret');
-      localStorage.setItem('token',token);
-      navigate('/');
-    }catch (error){
-      console.error('Error;',error);
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Make API call to login or sign up user
+    if (signup) {
+      // Make API call to sign up user
+      // ...
+    } else {
+      // Make API call to login user
+      // ...
     }
-    
+    // Navigate to /budget page
+    navigate('/budget');
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Username:
-        <input
-          type="text"
-          value={username}
-          onChange={(event) => setUsername(event.target.value)}
-        />
-      </label>
-      <br />
-      <label>
-        Password:
-        <input
-          type="password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-        />
-      </label>
-      <br />
-      <button type="submit">Log In</button>
-    </form>
+    <div>
+      <h2>{signup ? 'Sign Up' : 'Log In'}</h2>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Email:
+          <input type="email" value={email} onChange={handleEmailChange} />
+        </label>
+        <br />
+        <label>
+          Password:
+          <input type="password" value={password} onChange={handlePasswordChange} />
+        </label>
+        <br />
+        <button type="submit">{signup ? 'Sign Up' : 'Log In'}</button>
+      </form>
+      <p>
+        {signup ? 'Already have an account?' : "Don't have an account?"}
+        <button onClick={() => setSignup(!signup)}>{signup ? 'Log In' : 'Sign Up'}</button>
+      </p>
+    </div>
   );
-};
+}
 
-export default LoginPage;
+export default SignIn;

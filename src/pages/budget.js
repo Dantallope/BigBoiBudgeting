@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import jwt from 'jsonwebtoken';
 import { useNavigate } from 'react-router-dom';
 import '../css/budget.css';
 
@@ -23,25 +22,7 @@ function BudgetTracker() {
     ],
   });
 
-  const BudgetPage = () => {
-    const navigate = useNavigate();
-
-    useEffect(()=>{
-      const token = localStorage.getItem('token');
-
-      if(!token){
-        navigate('/sign-in');
-      }else{
-        try{
-          const decodedToken = jwt.verify(token, 'secret');
-          console.log('User:', decodedToken.username);
-        }catch (error){
-          console.error('Error:',error);
-          navigate('/sign-in');
-        }
-      }
-    },[]);
-  }
+  
 
   
   const handleTotalAmountChange = (event) => {
