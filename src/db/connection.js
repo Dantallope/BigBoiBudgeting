@@ -3,8 +3,9 @@ const connection_url = 'mongodb+srv://Admin:Eu3x3hXviavmgp0e@cluster0.u1yqqjj.mo
 
 mongoose.connect(connection_url, {
     useNewUrlParser: true,
-    useCreateIndex: true,
     useUnifiedTopology: true,
-})
+});
 
-module.exports = mongoose.connection;
+const db = mongoose.connection;
+
+module.exports = db;
