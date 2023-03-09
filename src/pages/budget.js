@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import '../src/css/budget.css';
 import { useQuery, useMutation } from '@apollo/client';
 import { createUser, updateUser, users } from '../db/schemas/typeDefs';
+//import { useQuery, useMutation } from '@apollo/client';
+//import { gql } from '../db/schemas/typeDefs';
 import '../css/budget.css';
-
+/*
 function Budget() {
   const [budget, setBudget] = useState(0);
 
@@ -16,12 +18,12 @@ function Budget() {
     updateUser({ variables: { id: data.budget.id, amount: budget } });
 
 }};
-
+*/
 function BudgetTracker() {
   const [totalAmount, setTotalAmount] = useState("");
   const [userAmount, setUserAmount] = useState("");
   const [productTitle, setProductTitle] = useState("");
-  const [expenditureValue, setExpenditureValue] = useState(0);
+  const [expenseValue, setExpenseValue] = useState(0);
   const [balanceValue, setBalanceValue] = useState(0);
   const [expensesList, setExpensesList] = useState([]);
 
@@ -40,29 +42,29 @@ function BudgetTracker() {
   const handleTotalAmountButtonClick = () => {
     const tempAmount = parseInt(totalAmount);
     if (isNaN(tempAmount) || tempAmount < 0) {
-      alert("Please enter a valid budget amount.");
+      alert("Imagine having no budget");
       return;
     }
     setBalanceValue(tempAmount);
-    setExpenditureValue(0);
+    setExpenseValue(0);
     setExpensesList([]);
     setTotalAmount("");
   };
 
   const handleCheckAmountButtonClick = () => {
     if (!userAmount || !productTitle) {
-      alert("Please enter a product name and an amount.");
+      alert("I guess it too much to enter both a product name and an amount.");
       return;
     }
     const expense = parseInt(userAmount);
-    const sum = expenditureValue + expense;
+    const sum = expenseValue + expense;
     const totalBalance = balanceValue - expense;
     if (totalBalance < 0) {
-      alert("You have exceeded your budget!");
+      alert("Let's try a little harder. . .");
       return;
     }
     setBalanceValue(totalBalance);
-    setExpenditureValue(sum);
+    setExpenseValue(sum);
     setExpensesList([
       ...expensesList,
       { productTitle: productTitle, amount: expense },
@@ -80,7 +82,7 @@ function BudgetTracker() {
       ...expensesList.slice(index + 1),
     ]);
     setBalanceValue(balanceValue + expense.amount);
-    setExpenditureValue(expenditureValue - expense.amount);
+    setExpenseValue(setExpenseValue - expense.amount);
   };
 
   const handleDeleteButtonClick = (index) => {
@@ -90,12 +92,14 @@ function BudgetTracker() {
       ...expensesList.slice(index + 1),
     ]);
     setBalanceValue(balanceValue + expense.amount);
-    setExpenditureValue(expenditureValue - expense.amount);
+    setExpenseValue(setExpenseValue - expense.amount);
   };
 
   return (
-    <div>
-      <h1>Budget Tracker</h1>
+    <div id="budget-tracker">
+      <h1 id="budget-head" >Budget Tracker</h1>
+      
+      <div id="section-one">
       <label>
         Total Budget Amount:{" "}
         <input
@@ -104,9 +108,12 @@ function BudgetTracker() {
           onChange={handleTotalAmountChange}
         />
       </label>
-      <button onClick={handleTotalAmountButtonClick}>Set Budget</button>
+      <button id="setBudgetBttn" onClick={handleTotalAmountButtonClick}>Set Budget</button>
       <p>Balance: {balanceValue}</p>
-      <p>Expenditure: {expenditureValue}</p>
+      <p>Total Expenses: {setExpenseValue}</p>
+      </div>
+
+      <div id="section-two">
       <label>
         Product Name:{" "}
         <input
@@ -124,6 +131,9 @@ function BudgetTracker() {
         />
       </label>
       <button onClick={handleCheckAmountButtonClick}>Add Expense</button>
+      </div>
+
+      <div id="section-three">
       <h2>Expenses List</h2>
 
       <table>
@@ -142,18 +152,16 @@ function BudgetTracker() {
               <td>{expense.amount}</td>
 
               <td>
-                <button onClick={() => handleEditButtonClick(index)}>
-                  Edit </button>
+                <button onClick={() => handleEditButtonClick(index)}> Edit </button>
               </td>
               <td>
-                <button onClick={() => handleDeleteButtonClick(index)}>
-                  Delete
-                </button>
+                <button onClick={() => handleDeleteButtonClick(index)}> Delete </button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+      </div>
     </div>
   );
 }
