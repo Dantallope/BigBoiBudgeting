@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client"
+import { gql } from "apollo-server-express"
 
 export const GET_USER = gql`
 	query getUser(
@@ -10,7 +10,6 @@ export const GET_USER = gql`
 			_id
 			username
 			email
-            password
 			budget
 		}
 	}

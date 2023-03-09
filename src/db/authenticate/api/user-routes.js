@@ -11,4 +11,4 @@ userRouter.get("/me", authMiddleware, getSingleUser)
 
 userRouter.post("/login", login)
 
-module.exports = userRoutes
+module.exports = userRouter
