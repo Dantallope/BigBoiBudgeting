@@ -9,6 +9,10 @@ const typeDefs = gql`
     budget: Int!
   }
 
+  input SetBudgetInput {
+    budget: Int
+  }
+
   input CreateUserInput {
     username: String!
     email: String!
@@ -38,6 +42,7 @@ const typeDefs = gql`
     updateUser(_id: ID!, email: String!, password: String!, budget: Int!): User
     signUp(input: SignUpUserInput!): Auth
     signIn(email: String!, password: String!): Auth!
+    setBudget(input: SetBudgetInput!): User
   }
 `;
 
