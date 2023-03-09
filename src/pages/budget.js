@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import '../css/budget.css';
 
 
@@ -20,6 +21,8 @@ function BudgetTracker() {
       },
     ],
   });
+
+  
 
   
   const handleTotalAmountChange = (event) => {
