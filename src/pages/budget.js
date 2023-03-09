@@ -6,7 +6,7 @@ function BudgetTracker() {
   const [totalAmount, setTotalAmount] = useState("");
   const [userAmount, setUserAmount] = useState("");
   const [productTitle, setProductTitle] = useState("");
-  const [expenseValue, setExpenseValue] = useState(0);
+  const [expenditureValue, setExpenditureValue] = useState(0);
   const [balanceValue, setBalanceValue] = useState(0);
   const [expensesList, setExpensesList] = useState([]);
 
@@ -29,7 +29,7 @@ function BudgetTracker() {
       return;
     }
     setBalanceValue(tempAmount);
-    setExpenseValue(0);
+    setExpenditureValue(0);
     setExpensesList([]);
     setTotalAmount("");
   };
@@ -40,14 +40,14 @@ function BudgetTracker() {
       return;
     }
     const expense = parseInt(userAmount);
-    const sum = expenseValue + expense;
+    const sum = expenditureValue + expense;
     const totalBalance = balanceValue - expense;
     if (totalBalance < 0) {
       alert("Let's try a little harder. . .");
       return;
     }
     setBalanceValue(totalBalance);
-    setExpenseValue(sum);
+    setExpenditureValue(sum);
     setExpensesList([
       ...expensesList,
       { productTitle: productTitle, amount: expense },
@@ -65,7 +65,7 @@ function BudgetTracker() {
       ...expensesList.slice(index + 1),
     ]);
     setBalanceValue(balanceValue + expense.amount);
-    setExpenseValue(setExpenseValue - expense.amount);
+    setExpenditureValue(expenditureValue - expense.amount);
   };
 
   const handleDeleteButtonClick = (index) => {
@@ -75,7 +75,7 @@ function BudgetTracker() {
       ...expensesList.slice(index + 1),
     ]);
     setBalanceValue(balanceValue + expense.amount);
-    setExpenseValue(setExpenseValue - expense.amount);
+    setExpenditureValue(expenditureValue - expense.amount);
   };
 
   return (
@@ -93,7 +93,7 @@ function BudgetTracker() {
       </label>
       <button id="setBudgetBttn" onClick={handleTotalAmountButtonClick}>Set Budget</button>
       <p>Balance: {balanceValue}</p>
-      <p>Total Expenses: {setExpenseValue}</p>
+      <p>Total Expenses: {expenditureValue}</p>
       </div>
 
       <div id="section-two">
