@@ -15,7 +15,6 @@ const HomePage = () => {
       >
         A passive-aggressive budget tracker project could be described as a tool that helps users take control of their finances in a lighthearted and humorous way. It uses passive-aggressive prompts to encourage users to stay on track with their budget, while also providing helpful insights and feedback to help them make better financial decisions.
       </Paragraph>
-      <Image src="../images/bbb.png" alt="Description of the image" />
     </Container>
   );
 };
