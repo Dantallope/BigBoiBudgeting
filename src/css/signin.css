@@ -15,6 +15,10 @@
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
   }
   
+  #container p {
+    text-align: center;
+  }
+  
   h1 {
     margin-bottom: 2rem;
     color: var(--blue);
@@ -23,7 +27,7 @@
   form {
     display: flex;
     align-items: center;
-    width: 20rem;
+    justify-content: center;
     padding: 3rem;
     flex-direction: column;
     border-radius: 0.5rem;
@@ -38,7 +42,8 @@
   }
   
   input[type='text'],
-  input[type='password'] {
+  input[type='password'], 
+  input[type='email']{
     padding: .6rem;
     margin: 0.5rem;
     border: none;
@@ -82,5 +87,6 @@
 
   button:hover {
     opacity: 0.5;
+    background-color: var(--red);
   }
 
