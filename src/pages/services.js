@@ -1,86 +1,97 @@
-import React, { useEffect, useRef } from 'react';
-import styled from 'styled-components';
-import { motion } from 'framer-motion';
-import ReactDOM from 'react-dom';
+import React from "react";
+import styled from "styled-components";
 
-const HomePage = () => {
-  const titleRef = useRef(null);
-  const paragraphRef = useRef(null);
+// Import image file
+import budgetImage from "../images/budget.png";
 
-  useEffect(() => {
-    const title = titleRef.current;
-    const paragraph = paragraphRef.current;
-
-    // Animate title fade-in on mount
-    const titleVariants = {
-      hidden: { opacity: 0 },
-      visible: { opacity: 1 },
-    };
-
-    const titleTransition = {
-      duration: 1,
-    };
-
-    const titleAnimation = titleVariants && (
-      <motion.h1
-        variants={titleVariants}
-        initial="hidden"
-        animate="visible"
-        transition={titleTransition}
-      >
-        Modern Website
-      </motion.h1>
-    );
-
-    // Animate paragraph slide-in on mount
-    const paragraphVariants = {
-      hidden: { x: -50, opacity: 0 },
-      visible: { x: 0, opacity: 1 },
-    };
-
-    const paragraphTransition = {
-      duration: 1,
-    };
-
-    const paragraphAnimation = paragraphVariants && (
-      <motion.p
-        variants={paragraphVariants}
-        initial="hidden"
-        animate="visible"
-        transition={paragraphTransition}
-      >
-        Welcome to this modern website built with React and CSS-in-JS!
-      </motion.p>
-    );
-
-    // Add animations to DOM nodes
-    if (title) ReactDOM.render(titleAnimation, title);
-    if (paragraph) ReactDOM.render(paragraphAnimation, paragraph);
-  }, []);
-
+const ImportanceOfBudgeting = () => {
   return (
     <Container>
-      <Title ref={titleRef}></Title>
-      <Paragraph ref={paragraphRef}></Paragraph>
+      <Header>
+        <Title>Why Budget Tracking Is Important and the servies we provide</Title>
+      </Header>
+      <ImageContainer>
+        <Image src={budgetImage} alt="Budgeting Image" />
+      </ImageContainer>
+      <Content>
+        <Section>
+          <Subtitle>Control Your Finances</Subtitle>
+          <Text>
+            Budget tracking allows you to take control of your finances by
+            keeping track of where your money is going. By monitoring your
+            spending habits, you can identify areas where you can cut back and
+            save money.
+          </Text>
+        </Section>
+        <Section>
+          <Subtitle>Set Financial Goals</Subtitle>
+          <Text>
+            Budget tracking helps you set and achieve financial goals. By
+            creating a budget and sticking to it, you can save money for a down
+            payment on a house, a vacation, or other long-term goals.
+          </Text>
+        </Section>
+        <Section>
+          <Subtitle>Reduce Stress</Subtitle>
+          <Text>
+            Financial stress is a major source of stress for many people. By
+            budget tracking, you can reduce stress and anxiety by knowing
+            exactly where your money is going and having a plan in place to
+            achieve your financial goals.
+          </Text>
+        </Section>
+      </Content>
     </Container>
   );
 };
 
 const Container = styled.div`
-  height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  margin: 2rem;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  padding: 2rem;
+`;
+
+const Header = styled.div`
+  margin-bottom: 2rem;
 `;
 
 const Title = styled.h1`
-  font-size: 4rem;
-`;
-
-const Paragraph = styled.p`
   font-size: 2rem;
-  margin-top: 2rem;
+  text-align: center;
 `;
 
-export default HomePage;
+const ImageContainer = styled.div`
+  width: 80%;
+  margin: 2rem 0;
+`;
+
+const Image = styled.img`
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+`;
+
+const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+`;
+
+const Section = styled.div`
+  margin: 2rem 0;
+`;
+
+const Subtitle = styled.h2`
+  font-size: 1.5rem;
+`;
+
+const Text = styled.p`
+  font-size: 1.2rem;
+  line-height: 1.5;
+`;
+
+export default ImportanceOfBudgeting;
